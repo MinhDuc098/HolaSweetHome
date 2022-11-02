@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="../static/css/report_post.css">
+	<title>Add Home</title>
+</head>
+
+<body>
+	{% include 'components/navbar.html' %}
+
+	<div class="container">
+		<div style="background-color: #FFFFFF ;" class="cover_form">
+			<h1 class="text-center text-capitalize header" style="color: #028174"> Add new Home </h1>
+			<form action="/home/add_home" method="POST">
+				{% if not address and not home_name %}
+					<label for="home_name" class="text-capitalize"> Enter Your Home Name:</label>
+					<input type="text" name="home_name" class="form-control" style=" background-color: #D9D9D9;" required>
+					<br>
+					<label for="address" class="text-capitalize"> Enter Your Address:</label>
+					<input type="text" name="address" class="form-control" style=" background-color: #D9D9D9;" required>
+				{% else %}
+					<input type="hidden" name="address" id="address" value={{address}}>
+					<input type="hidden" name="home_name" id="home_name" value={{home_name}}>
+				{% endif %}
+				<br>
+				<label for="des" class="text-capitalize"> Description about your home:</label>
+				<textarea name="des" id="" cols="30" rows="3" class="form-control"
+					style=" background-color: #D9D9D9;"></textarea>
+
+				<br>
+				<label for="num_room" class="text-capitalize"> Total room:</label>
+				<input type="number" name="num_room" id="total_room" class="form-control" style=" background-color: #D9D9D9;"
+					required>
+				<br>
+				<label for="reason" class="text-capitalize"> available room:</label>
+				<input type="number" name="room_no" id="available_room" class="form-control" style=" background-color: #D9D9D9;"
+					oninput="comparation()" required>
+				<br>
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+
+				<button type="submit" class="btn btn-success text-uppercase" style="margin-left: 20px;"> submit </button>
+				<a href="{{url_for('home_router.load_home')}}" class=""> <button type="button"
+						class="btn btn-danger text-uppercase"> cancel </button></a>
+
+
+			</form>
+		</div>
+	</div>
+
+	<script>
+		function comparation() {
+			var total_room = document.getElementById("total_room").value;
+			var available_room = document.getElementById("available_room").value;
+			if (available_room > total_room) document.getElementById("available_room").value = total_room;
+		}
+
+
+	</script>
+
+</body>
+
+</html>

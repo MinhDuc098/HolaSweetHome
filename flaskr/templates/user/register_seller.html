@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="../static/css/register_seller.css">
+	<title>Register Home Owner</title>
+</head>
+
+<body>
+	{% include 'components/navbar.html' %}
+	
+	{% with info = get_flashed_messages() %}
+	{% if info %}
+		<script>alert("{{ info[0] }}");</script>
+	{% endif %}
+	{% endwith %}
+	
+	<div class="container row">
+		<div class="col-md-8">
+			<h1 class="text-center">Register for Home Owner</h1>
+			<form class="form-submit" action="/user/register_seller" method="post">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+				<div class="form-element">
+					<label for="email" class="text-capitalize fw-bolder"> email </label>
+					<input type="email" id="email" name="email" class="form-control" required>
+				</div>
+				<br>
+				<div class="form-element">
+					<label for="username" class="text-capitalize fw-bolder"> username </label>
+					<input type="text" id="username" name="username" class="form-control" required>
+				</div>
+				<br>
+				<div class="form-element">
+					<label for="address" class="text-capitalize fw-bolder">Address</label>
+					<textarea name="address" id="address" rows="1" class="form-control"></textarea>
+				</div>
+				<br>
+				<label for="home_name" class="text-capitalize fw-bolder">Your Home Name:</label> 
+				<input type="text" name="home_name" class="form-control" required> 
+				<br>
+				<div class="text-center" style="padding-top: 20px;">
+					<button type="submit" class=" btn btn-success btn-block text-uppercase" style="width: 30%;"> register for home
+						owner </button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4 text-center">
+			<p> <a href="/user/login" class="text-decoration-none text-capitalize"> Have an Account? </a></p>
+			<p> <a href="/user/register" class="text-decoration-none text-capitalize"> Switch to normal user register? </a>
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<div class="central-meta item">
+    <div class="user-post">
+        <div class="friend-info">
+            <figure>
+                <img src="../../static/assets/img/avatar.png" alt="">
+            </figure>
+            <div class="friend-name">
+                <ins><a href="time-line.html" title="">{{post.user.username}}</a></ins>
+                <ins><a href="/post/post_detail?id={{post.post.id}}" title="">see post</a></ins>
+                <span>reported time: {{ post.timestamp.strftime('%Y-%m-%d') }}</span>
+            </div>
+            <div class="post-meta">
+                    <p style="font-weight: bold;">
+                        <p style="font-weight: bold;">Reason: {{ post.reason}}</p>
+                    </p>
+                <div class="we-video-info">
+                    <ul>
+                        <li>
+                            <div class="text-right"> 
+                                <form onSubmit="if(!confirm('Refuse this report?')){return false;}" action="./delete_report" method="POST">
+                                  <input type="text" value="{{post.id}}" name="id" hidden>
+                                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                  <button class="btn btn-danger" type="submit"  ><i class="fa fa-trash"></i>  Refuse </button>
+                                </form> 
+                            </div>
+                        </li>
+                        <li>
+                            <div class="text-right"> 
+                                <form onSubmit="if(!confirm('Accept this report and delete this post?')){return false;}" action="./accept_report" method="POST">
+                                  <input type="text" value="{{post.id}}" name="id" hidden>
+                                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                  <button class="btn btn-success"  type="submit"><i class="fa fa-pencil"></i> Accept  </button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

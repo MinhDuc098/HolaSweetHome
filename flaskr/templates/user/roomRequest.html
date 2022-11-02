@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto+Mono&display=swap" rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/home.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="../static/css/roomRequest.css">
+
+    <title>Contact Form #5</title>
+  </head>
+  <body>
+  
+
+  <div class="content">
+
+    {% include 'components/navbar.html' %}
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="row mb-5">
+            <div class="col-md-4 mr-auto">
+              <h3 class="thin-heading mb-4">Address</h3>
+              <p>Địa chỉ trọ </p>
+            </div>
+            <div class="col-md-6 ml-auto">
+              <h3 class="thin-heading mb-4">Contact Info</h3>
+              <p>T: +1 (291) 939 9321 <br> E: info@mail.com</p>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              
+              <h3 class="thin-heading mb-4">Message Us</h3>
+
+              <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                {% if done != True %}
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <input type="text" class="form-control" name="phone" id="email" placeholder="Your phone" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <textarea class="form-control" name="timeVisit" id="message" cols="30" rows="2" placeholder="time visit" required></textarea>
+                    </div>
+                  </div>  
+                  <div class="row">
+                    <div class="col-12">
+                      <input type="submit" value="Send Message" class="btn btn-primary rounded-0 py-2 px-4">
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <div class="form-control">Name:  {{name}} </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <div class="form-control">Phone:  {{phone}} </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <div class="form-control">Time:  {{timeVisit}}</div>
+                    </div>
+                  </div>  
+                  <div>Đặt phòng thành công</div>
+                  <div class="row">
+                    <div class="col-12">
+                      <a class="btn btn-primary rounded-0 py-2 px-4" href="{{ url_for('user_router.home') }}">Back Home</a>
+                    </div>
+                  </div>
+                {% endif %}
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<header class="site-header">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="height: 50px;">
+        <a href="{{ url_for('user_router.home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0">SHH</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav me-auto p-4 p-lg-5">
+                {% if session.get('role') == 'ADMIN' %}
+                <a href="{{url_for('admin_router.dashBoard')}}" class="nav-item nav-link">ADMIN MANAGER</a>
+                {% endif %}
+                <div class="nav-item dropdown">
+                    {% if session.get('role') == 'SELLER' %}
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{{ url_for('home_router.load_home') }}" class="dropdown-item">My homes</a>
+                        <a href="{{ url_for('home_router.list_home') }}" class="dropdown-item">Find home</a>
+                        <a href="team.html" class="dropdown-item">...</a>
+                    </div>
+                    {% elif session.get('role') == 'MEMBER' %}
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{{ url_for('home_router.list_home') }}" class="dropdown-item">Find home</a>
+                        <a href="team.html" class="dropdown-item">...</a>
+                    </div>
+                    {% elif session.get('role') == 'ADMIN' %}
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{{ url_for('home_router.list_home') }}" class="dropdown-item">Find home</a>
+                        <a href="team.html" class="dropdown-item">...</a>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="nav-item dropdown">
+                    {% if session.get('username') != None%}
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Forums</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{{ url_for('post_router.newfeed') }}" class="dropdown-item">Newfeeds</a>
+                        <a href="{{ url_for('post_router.create_post') }}" class="dropdown-item">new Post</a>
+                        <a href="{{ url_for('post_router.search_post') }}" class="dropdown-item">Search post</a>
+                        <a href="{{ url_for('post_router.load_post') }}" class="dropdown-item">My posts</a>
+                    </div>
+                    {% else %}
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Forums</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{{ url_for('post_router.newfeed') }}" class="dropdown-item">Newfeeds</a>
+                        <a href="{{ url_for('post_router.search_post') }}" class="dropdown-item">Search post</a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <a href="contact.html" class="nav-item nav-link">about us</a>
+            </div>
+
+
+
+            <div class="navbar-nav ml-auto p-4 p-lg-5">
+                <div class="navbar-nav">
+                    {% if session.get('username') != None %}
+                    <a class="nav-item nav-link" href="{{ url_for('user_router.bookmark')}}">Bookmark</a>
+                    <a class="nav-item nav-link"
+                        href="{{ url_for('user_router.profile', username = session['username']) }}">{{session['username']}}</a>
+                    <a class="nav-item nav-link" href="{{ url_for('user_router.logout')  }}">Logout</a>
+                    {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('user_router.login') }}">Login</a>
+                    <a class="nav-item nav-link" href="{{ url_for('user_router.register') }}">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

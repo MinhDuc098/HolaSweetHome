@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Post Box</title>
+    <link rel="stylesheet" href="..\static\css\create_post.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+    <!-- FontAweome CDN Link for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <section class="post">
+        </br><header>Post</header>
+          <form method="post" enctype="multipart/form-data">
+            <div class="content">
+              <div class="details">
+                <p>Post</p>
+              </div>
+            </div>
+            <textarea
+              id="cotent"
+              name="content"
+              placeholder="What's on your mind?"
+              rows="10"
+              cols="81"
+
+            ></textarea>
+
+            <div class="options">
+              <div class="button-group pull-left">
+                <input type="file" id="file" name="file" />
+              </div>
+            </div>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <button type="submit">Post</button>
+          </form>
+        </section>
+      </div>
+    </div>
+    <script src="../static/js/create_post.js"></script>
+  </body>
+</html>
