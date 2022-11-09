@@ -1,0 +1,33 @@
+.container {
+  background-color: #92de8b;
+  padding-left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+.col-md-4 {
+  margin-bottom: 10%;
+  font-size: 20px;
+}
+.col-md-8 {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 120%;
+  position: relative;
+  bottom: 10%;
+}
+form {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+a:hover {
+  opacity: 0.5;
+}

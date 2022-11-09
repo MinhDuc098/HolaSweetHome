@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<title>Home List</title>
+	<style>
+		.warning {
+  padding: 20px;
+  background-color: #ff9800;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+	</style>
+</head>
+
+<body style="background-color: #FFE3B3;">
+	{% include 'components/navbar.html' %}
+
+	{%with messages = get_flashed_messages(category_filter=["bookmark"])%}
+	{%if messages%}
+	{%for message in messages%}
+	<div class="warning"> 
+		{{message}}
+	  </div>
+	{%endfor%}
+	{%endif%}
+	{%endwith%}
+
+	<div class="container">
+		<div style="margin-top: 30px ;">
+			<h1 class="text-center" style="margin-bottom: 10px;">List home available on the website</h1>
+			<h3 class="text-center" style="margin-bottom: 30px;">Give a sight for the best deal</h3>
+		</div>
+		<table class="table table-bordered table-hover table-dark">
+			<thead>
+				<tr class="header">
+					<td> ID </td>
+					<td> Address </td>
+					<td> Description</td>
+					<td> Total Room </td>
+					<td> Available Room </td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			{%for i in list_home%}
+			<tbody>
+				<tr>
+					<td> {{i.id}} </td>
+					<td> {{i.address}} </td>
+					<td> {{i.description}} </td>
+					<td>{{i.total_rooms}}</td>
+					<td> {{i.available_rooms}} </td>
+					<td> <a href="{{url_for('home_router.home_detail', home_id = i.id)}}"><button
+								class="btn btn-danger">
+								View Detail </button></a> </td>
+					<td> <a href="{{url_for('home_router.home_compare', home_id = i.id)}}"><button
+								class="btn btn-danger">
+								Compare with </button></a> </td>
+				</tr>
+			</tbody>
+			{%endfor%}
+		</table>
+		<div>
+			<a href="/">
+				<button class="btn btn-warning btn-lg">
+					Back to Home
+				</button>
+			</a>
+		</div>
+	</div>
+	<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+	</script>
+</body>
+
+</html>

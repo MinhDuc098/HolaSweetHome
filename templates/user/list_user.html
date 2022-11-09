@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/chat_all.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {% include 'components/navbar.html' %}
+    <div class="table-form" style="width: 700px">
+      <h2 class="text-center">List of User</h2>
+      <br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col" class="text-center">Name</th>
+            <th scope="col" class="text-center">Role</th>
+            <th scope="col" class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in list_user %} {% if user.id != current_user_id %}
+          <tr>
+            <td class="text-center">{{user.id}}</td>
+            <td class="text-center">{{user.username}}</td>
+            <td class="text-center">{{user.role}}</td>
+            <td class="text-center">
+              <a
+                href="{{ url_for('user_router.profile', username = user.username) }}"
+                ><button class="btn btn-success">Profile</button></a
+              >
+            </td>
+          </tr>
+          {% endif %} {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

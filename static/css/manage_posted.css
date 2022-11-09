@@ -1,0 +1,19 @@
+body{
+    background-color: #FFE3B3;
+}
+.header{
+    margin: 40px;
+}
+
+.table-striped thead tr th{
+    text-transform: uppercase;
+}
+.btn-danger{
+    text-transform: uppercase;
+    color: whitesmoke;
+    width: 80%;
+}
+.btn-success{
+    width: 100%;
+   
+}

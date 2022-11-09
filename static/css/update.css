@@ -1,0 +1,17 @@
+body{
+    background-color: #FFE3B3;
+}
+h1{
+    margin: 25px;
+}
+form{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 25px;
+}
+.btn{
+    text-transform: uppercase;
+    margin-top: 25px;
+    width: 100%;
+    font-size: 20px;
+}

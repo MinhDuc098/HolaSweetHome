@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/userProfile.css" />
+    <script src="../static/js/register.js"></script>
+  </head>
+
+  <body>
+    {% include 'components/navbar.html' %}
+    <div class="container">
+      <form method="POST" action="" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div class="row gutters">
+          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="account-settings">
+                  <div class="user-profile">
+                    <div class="user-avatar">
+                      <img
+                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        alt="Avatar img"
+                      />
+                      <!-- No avatar img record -->
+                    </div>
+                  </div>
+                  <div class="about">
+                    <h5>{{session['role']}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+              <div class="card-body">
+                <form method="POST" action="/profile/edit">
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h6 class="mb-2 text-prim">Personal Details</h6>
+                      <p class="text-muted">
+                        Leave it empty if you don't want to change it
+                      </p>
+                      {%with messages = get_flashed_messages()%} {%if
+                      messages:%} {%for m in messages%}
+                      <p class="text-capitalize text-danger">{{m}}</p>
+                      {%endfor%} {%endif%} {%endwith%}
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="eMail">Username</label>
+                        <input type="text" name="username" />
+                      </div>
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="form-group">
+                                    <label for="fullName">Full Name:</label>
+                                    <input type="text" name="fullname">
+                                </div>
+                            </div> -->
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="eMail">Email:</label>
+                        <input type="email" name="email" />
+                      </div>
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="form-group">
+                                    <label for="phone">Phone:</label>
+                                    <input type="text" name="phone" pattern="[0-9]{10-11}">
+                                </div>
+                            </div> -->
+                  </div>
+                  <!-- <div class="row gutters">
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mt-3 mb-2 text-prim">Address</h6>
+                            </div>
+                        </div> -->
+
+                  <br />
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="text-right">
+                        <button type="submit" class="btn btn-primary">
+                          Change
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
